@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
-import loginUser from '../actions/loginUser';
 import Link from 'next/link';
 
 const Login = () => {

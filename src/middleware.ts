@@ -9,7 +9,7 @@ export const middleware = async (req: NextRequest) => {
     req,
     secret: process.env.NEXTAUTH_SECRET || 'default_secret',
   });
-  const isTokenOk = Boolean(token);
+
   const isAdminUser = token?.userType;
   console.log(isAdminUser, 'show me the name');
   console.log(token, 'show me the token');

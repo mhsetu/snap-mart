@@ -1,4 +1,3 @@
-import { connectDB } from '@/utils/ConnectToDB';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { NextAuthOptions } from 'next-auth';
 import loginUser from '@/app/actions/loginUser';
@@ -63,7 +62,7 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       if (token) {
         session.user!.name = token.name;
         session.user.userType = token.userType;

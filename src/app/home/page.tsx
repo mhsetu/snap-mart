@@ -4,8 +4,7 @@ import Header from '@/Components/Header/Header';
 import SecondMain from '@/Components/Home/SecondMain';
 import Sliders from '@/Components/Slider/Sliders';
 import UserInfo from '@/Components/UserInfo/UserInfo';
-import { authOptions } from '@/utils/authOptions';
-import { getServerSession } from 'next-auth';
+
 
 // import Main from '@/Components/Home/Main';
 
