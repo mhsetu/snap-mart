@@ -1,6 +1,9 @@
 'use server';
 
 import { connectDB } from '@/utils/ConnectToDB';
+import { MongoServerError } from 'mongodb';
+import { redirect } from 'next/navigation';
+import { NextResponse } from 'next/server';
 
 interface UserPayload {
   email: string;
@@ -17,9 +20,12 @@ interface SafeInsertResult {
 
 export const registerUser = async (
   payload: UserPayload
-): Promise<SafeInsertResult | null> => {
+): Promise<SafeInsertResult | { error: string } | null> => {
   try {
     const db = await connectDB();
+    const duplicate = await db!
+      .collection('test_user')
+      .createIndex({ email: 1, name: 1 }, { unique: true });
     const result = await db!
       .collection<UserPayload>('test_user')
       .insertOne(payload);
@@ -28,7 +34,14 @@ export const registerUser = async (
       acknowledged: result.acknowledged,
       insertedId: result.insertedId.toString(), // ✅ convert ObjectId to string
     };
-  } catch (error) {
+  } catch (error: unknown) {
+    if (
+      error instanceof MongoServerError &&
+      error.code === 11000
+    ) {
+      return { error: 'User already exists with this email or username.' };
+    }
+
     console.error('Register User Error:', error);
     return null;
   }

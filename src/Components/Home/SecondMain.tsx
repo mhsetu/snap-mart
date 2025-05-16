@@ -1,8 +1,13 @@
+'use client';
 import Image from 'next/image';
 import Category from '../Categories/Category';
 import BannerCollection from '../Banners/BannerCollection/BannerCollection';
+import { useContext } from 'react';
+import { GlobalContext } from '@/app/Context/ContextProvider';
 
 const SecondMain = () => {
+  const { phones } = useContext(GlobalContext);
+
   return (
     <div>
       {/* <section className='container px-6 py-8 mx-auto lg:py-16 ' id='about'>
@@ -152,99 +157,39 @@ const SecondMain = () => {
         <Category />
       </section>
 
-      <section className='container px-6 py-8 mx-auto lg:py-16'>
-        <h3 className='text-xl font-medium text-gray-800 md:text-2xl lg:text-3xl '>
+      <section className='container px-6 py-8  lg:py-16 mx-8'>
+        <h3 className='text-xl font-medium text-center mb-8 text-gray-800 md:text-2xl lg:text-3xl '>
           Browse Our Projects
         </h3>
 
-        <div className='flex items-center py-6 mt-4 -mx-2 overflow-x-auto whitespace-nowrap'>
-          <button className=' inline-flex px-4 mx-2 focus:outline-none  items-center py-0.5 text-white bg-indigo-500 hover:bg-indigo-400 duration-300 transition-colors rounded-2xl'>
-            All
-          </button>
-          <button className=' inline-flex px-4 mx-2 duration-300 transition-colors hover:bg-indigo-500/70 hover:text-white text-gray-500 focus:outline-none py-0.5 cursor-pointer rounded-2xl'>
-            Web Design
-          </button>
-          <button className=' inline-flex px-4 mx-2 duration-300 transition-colors hover:bg-indigo-500/70 hover:text-white text-gray-500 focus:outline-none py-0.5 cursor-pointer rounded-2xl'>
-            Development
-          </button>
-          <button className=' inline-flex px-4 mx-2 duration-300 transition-colors hover:bg-indigo-500/70 hover:text-white text-gray-500 focus:outline-none py-0.5 cursor-pointer rounded-2xl'>
-            Research
-          </button>
-        </div>
-
-        <div className='grid grid-cols-1 gap-10 mt-10 md:grid-cols-2 lg:grid-cols-3 '>
-          <a
-            href='#'
-            className='transition-all duration-500 lg:col-span-2 hover:scale-105'
-          >
-            <Image
-              height={80}
-              width={1200}
-              className='object-cover object-top w-full rounded-lg shadow-md shadow-gray-200 h-80 xl:h-96'
-              src='https://plus.unsplash.com/premium_photo-1666273196333-929560e8f3d9?q=80&w=1923&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-              alt=''
-            />
-          </a>
-
-          <a href='#' className='transition-all duration-500 hover:scale-105'>
-            <Image
-              height={80}
-              width={1200}
-              className='object-cover object-top w-full rounded-lg shadow-md shadow-gray-200 h-80 xl:h-96 '
-              src='https://plus.unsplash.com/premium_photo-1666273196333-929560e8f3d9?q=80&w=1923&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-              alt=''
-            />
-          </a>
-
-          <a href='#' className='transition-all duration-500 hover:scale-105'>
-            <Image
-              height={80}
-              width={1200}
-              className='object-cover object-top w-full rounded-lg shadow-md shadow-gray-200 h-80 xl:h-96'
-              src='https://plus.unsplash.com/premium_photo-1666273196333-929560e8f3d9?q=80&w=1923&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-              alt=''
-            />
-          </a>
-
-          <a
-            href='#'
-            className='transition-all duration-500 lg:col-span-2 hover:scale-105'
-          >
-            <Image
-              height={80}
-              width={1200}
-              className='object-cover object-top w-full rounded-lg shadow-md shadow-gray-200 h-80 xl:h-96'
-              src='https://plus.unsplash.com/premium_photo-1666273196333-929560e8f3d9?q=80&w=1923&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-              alt=''
-            />
-          </a>
-
-          <a
-            href='#'
-            className='transition-all duration-500 lg:col-span-2 hover:scale-105'
-          >
-            <Image
-              height={80}
-              width={1200}
-              className='object-cover object-top w-full rounded-lg shadow-md shadow-gray-200 h-80 xl:h-96'
-              src='https://plus.unsplash.com/premium_photo-1666273196333-929560e8f3d9?q=80&w=1923&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-              alt=''
-            />
-          </a>
-
-          <a href='#' className='transition-all duration-500 hover:scale-105'>
-            <Image
-              height={80}
-              width={1200}
-              className='object-cover object-top w-full rounded-lg shadow-md shadow-gray-200 h-80 xl:h-96'
-              src='https://plus.unsplash.com/premium_photo-1666273196333-929560e8f3d9?q=80&w=1923&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-              alt=''
-            />
-          </a>
+        <div className='grid grid-cols-3'>
+          {phones?.map((phone) => (
+            <div key={phone._id} className='card bg-base-100 w-96  shadow-sm'>
+              <figure>
+                <Image
+                  className='mt-8'
+                  src={phone?.picture}
+                  width={200}
+                  height={300}
+                  alt='Shoes'
+                />
+              </figure>
+              <div className='card-body'>
+                <h2 className='card-title'>{phone?.phone_name}</h2>
+                {/* <p>
+                  A card component has a figure, a body part, and inside body
+                  there are title and actions parts
+                </p> */}
+                <div className='card-actions justify-end'>
+                  <button className='btn btn-primary'>Buy Now</button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className='container px-6 py-8 mx-auto lg:py-16'>
+      {/* <section className='container px-6 py-8 mx-auto lg:py-16'>
         <h3 className='text-xl font-medium text-gray-800 md:text-2xl lg:text-3xl '>
           Recent Blog Posts
         </h3>
@@ -388,7 +333,7 @@ const SecondMain = () => {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

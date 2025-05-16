@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import loginUser from '../actions/loginUser';
+import Link from 'next/link';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -73,7 +74,9 @@ const Login = () => {
         </form>
         <p className='text-center text-sm text-gray-600 mt-4'>
           Do not have an account?{' '}
-          <button className='text-blue-500 hover:underline'>Sign Up</button>
+          <Link href='/signup' className='text-blue-500 hover:underline'>
+            Sign Up
+          </Link>
         </p>
       </div>
     </div>

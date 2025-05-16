@@ -1,4 +1,4 @@
-import LogoutButton from '../Buttons/LogoutButton';
+
 import './Nav.css';
 const Nav = () => {
   return (

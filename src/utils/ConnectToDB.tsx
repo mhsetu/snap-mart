@@ -15,6 +15,7 @@ export async function connectDB() {
 
     const db = client.db('SnapMart');
     // Replace with your database name
+
     return db;
   } catch (err: unknown) {
     console.error(err);

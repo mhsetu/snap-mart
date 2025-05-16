@@ -59,8 +59,8 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  pages: {
-    signIn: '/login',
+  session: {
+    strategy: 'jwt',
   },
   callbacks: {
     async session({ session, token, user }) {
@@ -89,8 +89,5 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
   },
-  session: {
-    strategy: 'jwt',
-  },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET || 'default_secret',
 };

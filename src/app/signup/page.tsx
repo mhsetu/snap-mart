@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FaFacebook, FaGoogle } from 'react-icons/fa';
 import { registerUser } from '../actions/registerUser';
+import { redirect } from 'next/navigation';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -19,9 +20,21 @@ const Signup = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
- 
+
     console.log('Form Submitted', formData);
     const result = await registerUser(formData);
+
+    console.log(result, 'this is result');
+    // if (result?.acknowledged) {
+    //   redirect('/login');
+    // }
+    if (result && 'acknowledged' in result && result.acknowledged) {
+      redirect('/login');
+    } else if (result && 'error' in result) {
+      console.error(result.error);
+    } else {
+      console.error('Unexpected registration failure.');
+    }
 
     // fetch(`/api`, {
     //   method: 'POST',

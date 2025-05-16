@@ -106,8 +106,14 @@ const Header = () => {
               {' '}
               Contact
             </a>
+           {session?.user.userType== 'seller' &&  <button className='block btn btn-primary mr-3 text-white transition-colors duration-300 md:px-6 hover:text-indigo-300'>
+              {' '}
+              Add Phone
+            </button>}
 
-            {session?.user ? <LogoutButton /> : <LogInButton />}
+            <div className='mr-5'>
+              {session?.user ? <LogoutButton /> : <LogInButton />}
+            </div>
           </div>
         </nav>
       </header>
