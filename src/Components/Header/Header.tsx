@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
 import { LogInButton, LogoutButton } from '../Buttons/LogoutButton';
-import { getServerSession, Session } from 'next-auth';
-import { authOptions } from '@/utils/authOptions';
+// import { getServerSession, Session } from 'next-auth';
+// import { authOptions } from '@/utils/authOptions';
 import { useSession } from 'next-auth/react';
 
 const Header = () => {
@@ -106,10 +106,12 @@ const Header = () => {
               {' '}
               Contact
             </a>
-           {session?.user.userType== 'seller' &&  <button className='block btn btn-primary mr-3 text-white transition-colors duration-300 md:px-6 hover:text-indigo-300'>
-              {' '}
-              Add Phone
-            </button>}
+            {session?.user.userType == 'seller' && (
+              <button className='block btn btn-primary mr-3 text-white transition-colors duration-300 md:px-6 hover:text-indigo-300'>
+                {' '}
+                Add Phone
+              </button>
+            )}
 
             <div className='mr-5'>
               {session?.user ? <LogoutButton /> : <LogInButton />}

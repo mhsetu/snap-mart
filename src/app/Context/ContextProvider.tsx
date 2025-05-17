@@ -1,7 +1,6 @@
 'use client';
-import { info } from 'console';
+
 import { createContext, ReactNode, useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 
 interface ContextProviderProps {
   children: ReactNode;
@@ -26,22 +25,21 @@ interface Phone {
   // add other fields as per your API
 }
 
-
 interface GlobalContextType {
-    phones: Phone[] | null;
-    SetPhones: (phones: Phone[] | null) => void;
-    // loading: boolean;
-    // error: string | null;
-  }
+  phones: Phone[] | null;
+  SetPhones: (phones: Phone[] | null) => void;
+  // loading: boolean;
+  // error: string | null;
+}
 
 // export const GlobalContext = createContext({});
 
 export const GlobalContext = createContext<GlobalContextType>({
-    phones: null,
-    SetPhones: () => {},
-    // loading: false,
-    // error: null,
-  });
+  phones: null,
+  SetPhones: () => {},
+  // loading: false,
+  // error: null,
+});
 // export const GlobalContext = createContext<GlobalContextType>({
 //     phones: null,
 //     SetPhones: () => {},
