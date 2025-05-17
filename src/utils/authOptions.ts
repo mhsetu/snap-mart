@@ -22,6 +22,13 @@ declare module 'next-auth/jwt' {
   }
 }
 
+type ExtendedUser = {
+  id: string;
+  name: string;
+  email: string;
+  userType: string;
+};
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -31,27 +38,26 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
 
-      async authorize(credentials): Promise<any> {
+      async authorize(
+        credentials: Record<'email' | 'password', string> | undefined
+      ): Promise<ExtendedUser | null> {
         console.log(credentials, 'CREDENTIALS AUTH');
         if (!credentials) return null;
 
         const user = await loginUser(credentials);
 
-        // const { username, password } = credentials;
-        // const db = await connectDB();
-
-        // const user = await db?.collection('test_user').findOne({ username });
-
-        // const isPasswordOk = password == user!.password;
-
-        // const user = { id: '1', username: 'Smith', email: 'smith@gmail.com' };
-        // if (isPasswordOk) {
-        //   return user;
+        // if (!user) {
+        //   return null;
         // } else {
         //   return null;
         // }
         if (user) {
-          return user;
+          return {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            userType: user.userType,
+          };
         } else {
           return null;
         }
@@ -79,9 +85,12 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         // token.username = user.name;
-        token.username = user.name;
-        // token.role = (user as any).role || (user as any).userType;
-        token.userType = (user as any).userType;
+        const extendedUser = user as ExtendedUser;
+        token.name = extendedUser.name;
+        token.userType = extendedUser.userType;
+        token.email = extendedUser.email;
+        token.id = extendedUser.id;
+        // token.userType = (user as any).userType;
         console.log(token.userType, token.username, 'this is me');
       }
       console.log(token, 'this is token');
